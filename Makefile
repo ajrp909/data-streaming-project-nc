@@ -6,3 +6,6 @@ reformat:
 
 lint:
 	venv/bin/flake8 src/ tests/
+
+security:
+	venv/bin/bandit src/

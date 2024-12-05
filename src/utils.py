@@ -7,7 +7,8 @@ def my_api_call():
     load_dotenv()
     api_key = os.getenv("API_KEY")
     response = requests.get(
-        f"https://content.guardianapis.com/search?api-key={api_key}"
+        f"https://content.guardianapis.com/search?api-key={api_key}",
+        timeout=5
     )
     response_json = response.json()
     list_of_articles = response_json["response"]["results"]
