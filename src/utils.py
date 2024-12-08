@@ -1,23 +1,24 @@
-import requests
 import os
+import requests
+from requests.models import Response
 from dotenv import load_dotenv
 
 
-def my_api_call():
+def my_api_call() -> list[dict[str, str]]:
     load_dotenv()
-    api_key = os.getenv("API_KEY")
-    response = requests.get(
+    api_key: str | None = os.getenv("API_KEY")
+    response: Response = requests.get(
         f"https://content.guardianapis.com/search?api-key={api_key}",
-        timeout=5
+        timeout=5,
     )
-    response_json = response.json()
+    response_json: dict = response.json()
     list_of_articles = response_json["response"]["results"]
     list_of_dct = []
-    for list in list_of_articles:
+    for dct in list_of_articles:
         web_date, web_title, web_url = (
-            list["webPublicationDate"],
-            list["webTitle"],
-            list["webUrl"],
+            dct["webPublicationDate"],
+            dct["webTitle"],
+            dct["webUrl"],
         )
         response_dict = {
             "webPublicationDate": web_date,
