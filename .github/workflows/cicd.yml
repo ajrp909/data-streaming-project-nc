@@ -25,14 +25,5 @@ jobs:
         pip install -r requirements.txt
         make
 
-    - name: Run reformat
-      run: make reformat  
-      
-    - name: Lint code
-      run: make lint
-      
-    - name: Security
-      run: make security
-      
-    - name: Run tests
-      run: make test
+    - name: Run Checks
+      run: make checks
