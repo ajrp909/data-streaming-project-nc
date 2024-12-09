@@ -7,5 +7,15 @@ reformat:
 lint:
 	venv/bin/flake8 src/ tests/
 
+mypy:
+	venv/bin/mypy src/ tests/
+
 security:
 	venv/bin/bandit -r src/
+
+checks:
+	make test
+	make reformat
+	make lint
+	make mypy
+	make security
