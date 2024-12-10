@@ -2,7 +2,7 @@ name: Makefile CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, cicd]
   pull_request:
     branches: [main]
 
@@ -23,6 +23,7 @@ jobs:
         python -m venv venv
         source venv/bin/activate
         pip install -r requirements.txt
+        make
 
     - name: Run Checks
       run: make checks
