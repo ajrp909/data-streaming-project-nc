@@ -33,11 +33,16 @@ def api_call(complete_url: str) -> dict:
     and returns a json string
     """
     response: Response = requests.get(complete_url, timeout=5)
+    if not response.status_code == 200:
+        raise ValueError("response code not valid")
     response_json: dict = response.json()
     return response_json
 
 
-def convert_response(response_json_dct):
+def convert_response(response_json_dct: dict):
+    """function takes in json dict, filters it and returns json
+    string ready for the lambda handler function
+    """
     list_of_articles: list = response_json_dct["response"]["results"]
     list_of_dct: list = []
     for dct in list_of_articles:

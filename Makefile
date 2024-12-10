@@ -1,5 +1,6 @@
 test:
-	venv/bin/pytest tests/ -vrP --testdox
+	venv/bin/pytest tests/ -vrP --testdox 
+	venv/bin/pytest --cov=src.utils --cov-report=term --cov-fail-under=100
 
 reformat:
 	venv/bin/black src/ tests/ --line-length 79 
