@@ -22,8 +22,23 @@ jobs:
       run: |
         python -m venv venv
         source venv/bin/activate
-        pip install -r requirements.txt
-        make
+        make upgrade
+        pip install -r requirements.txt 
 
-    - name: Run Checks
+    - name: run tests
+      run: make test
+
+    - name: run reformat
+      run: make reformat
+
+    - name: run lint
+      run: make lint
+
+    - name: run mypy
+      run: make mypy
+
+    - name: run security
+      run: make security
+    
+    - name: run checks
       run: make checks

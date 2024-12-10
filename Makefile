@@ -1,3 +1,6 @@
+upgrade:
+	pip install --upgrade pip
+
 test:
 	venv/bin/pytest tests/ -vrP --testdox 
 	venv/bin/pytest --cov=src.utils --cov-report=term --cov-fail-under=100
