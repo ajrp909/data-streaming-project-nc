@@ -4,6 +4,7 @@ import json
 from requests.models import Response
 from dotenv import load_dotenv
 
+
 def get_api_key() -> str:
     """Fetches API key from .env file and returns it as a string
     ensuring key is not of type None
@@ -14,16 +15,18 @@ def get_api_key() -> str:
         raise ValueError("API key field cannot be None")
     return api_key
 
-def form_url(api_key: str, query: str, from_date_param: str = "") -> str:
-    """Forms the url dynamically based on query parameters inputted from the user. Returns as string.
-    """
+
+def form_url(api_key: str, query: str, from_date_param: str = "") -> tuple:
+    """Forms the url dynamically based on query parameters inputted
+    from the user. Returns as tuple for easier testing."""
     from_date_string: str = f"from_date={from_date_param}&"
     main_url: str = "https://content.guardianapis.com/search?"
     url_quieries: str = f"q={query}&api-key={api_key}"
     if from_date_param:
         url_quieries = f"{from_date_string}q={query}&api-key={api_key}"
     complete_url: str = main_url + url_quieries
-    return complete_url
+    return (complete_url, url_quieries)
+
 
 def api_call(complete_url: str) -> dict:
     """function that calls the API using predetermined parameters
@@ -32,6 +35,7 @@ def api_call(complete_url: str) -> dict:
     response: Response = requests.get(complete_url, timeout=5)
     response_json: dict = response.json()
     return response_json
+
 
 def convert_response(response_json_dct):
     list_of_articles: list = response_json_dct["response"]["results"]
