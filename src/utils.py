@@ -39,7 +39,7 @@ def api_call(complete_url: str) -> dict:
     return response_json
 
 
-def convert_response(response_json_dct: dict):
+def convert_response(response_json_dct: dict) -> str:
     """function takes in json dict, filters it and returns json
     string ready for the lambda handler function
     """
