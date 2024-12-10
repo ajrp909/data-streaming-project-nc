@@ -25,13 +25,16 @@ def form_url(api_key: str, query: str, from_date_param: str = "") -> str:
     complete_url: str = main_url + url_quieries
     return complete_url
 
-def my_api_call() -> str:
+def api_call(complete_url: str) -> dict:
     """function that calls the API using predetermined parameters
     and returns a json string
     """
     response: Response = requests.get(complete_url, timeout=5)
     response_json: dict = response.json()
-    list_of_articles: list = response_json["response"]["results"]
+    return response_json
+
+def convert_response(response_json_dct):
+    list_of_articles: list = response_json_dct["response"]["results"]
     list_of_dct: list = []
     for dct in list_of_articles:
         web_date, web_title, web_url = (

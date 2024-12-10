@@ -8,7 +8,7 @@ def test_get_api_key_successful(mocker):
     mocker.patch("os.getenv", return_value="mocked_key")
     result = get_api_key()
     assert result == "mocked_key"
-    assert type(result) == str
+    assert isinstance(result, str)
 
 
 def test_get_api_key_failed(mocker):
@@ -21,6 +21,7 @@ def test_get_api_key_failed(mocker):
 
 
 def test_form_url():
+    
     api_key = "api_key"
     query = "query"
     from_date = "from_date"
