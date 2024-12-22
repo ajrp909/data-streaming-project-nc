@@ -1,6 +1,5 @@
 import os
 import requests
-import json
 from requests.models import Response
 from dotenv import load_dotenv
 
@@ -39,7 +38,7 @@ def api_call(complete_url: str) -> dict:
     return response_json
 
 
-def convert_response(response_json_dct: dict) -> str:
+def convert_response(response_json_dct: dict) -> list:
     """function takes in json dict, filters it and returns json
     string ready for the lambda handler function
     """

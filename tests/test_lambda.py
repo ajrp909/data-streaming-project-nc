@@ -9,5 +9,6 @@ def test_lambda_handler(mocker):
     lambda_handler(event, None)
     mock_sqs.send_message.assert_called_once_with(
         QueueUrl='testurl.com',
-        MessageBody='{"webPublicationDate": "test1", "webTitle": "test2", "webUrl": "test3"}'
+        MessageBody='{"webPublicationDate": "test1",'
+         ' "webTitle": "test2", "webUrl": "test3"}'
     )
