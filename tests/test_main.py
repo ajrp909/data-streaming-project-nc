@@ -71,8 +71,8 @@ def test_convert_response():
             ]
         }
     }
-    assert convert_response(fake_response_dct) == (
-        '[{"webPublicationDate": "2024-09-26T11:53:56Z", "webTitle": "test '
-        'test test", "webUrl": '
-        '"test.com"}]'
-    )
+    assert convert_response(fake_response_dct) == [{
+                    "webPublicationDate": "2024-09-26T11:53:56Z",
+                    "webTitle": "test " "test test",
+                    "webUrl": "test.com",
+                }]
