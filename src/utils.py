@@ -57,4 +57,4 @@ def convert_response(response_json_dct: dict) -> str:
             "webUrl": web_url,
         }
         list_of_dct.append(response_dict)
-    return json.dumps(list_of_dct)
+    return list_of_dct

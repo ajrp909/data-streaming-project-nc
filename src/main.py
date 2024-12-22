@@ -1,6 +1,6 @@
 from src.utils import get_api_key, form_url, api_call, convert_response
 
-from pprint import pprint
+import boto3
 
 
 def main():
@@ -13,10 +13,7 @@ def main():
         from_date_input,
     )[0]
     api_json_dct: dict = api_call(url_to_search)
-    pprint(api_json_dct)
-    ready_for_lambda: str = convert_response(api_json_dct)
-    pprint(ready_for_lambda)
-
+    ready_for_lambda: dict = convert_response(api_json_dct)
 
 if __name__ == "__main__":
     main()
