@@ -5,8 +5,17 @@ from dotenv import load_dotenv
 
 
 def get_api_key() -> str:
-    """Fetches API key from .env file and returns it as a string
-    ensuring key is not of type None
+    """
+    Fetches the API key from a .env file.
+
+    This function loads environment variables from a .env file and retrieves the API key.
+    It ensures that the API key is not None, raising a ValueError if it is not found.
+
+    Returns:
+        str: The API key as a string.
+
+    Raises:
+        ValueError: If the API key is None or not found in the environment variables.
     """
     load_dotenv()
     api_key: str | None = os.getenv("API_KEY")
@@ -16,8 +25,21 @@ def get_api_key() -> str:
 
 
 def form_url(api_key: str, query: str, from_date_param: str = "") -> tuple:
-    """Forms the url dynamically based on query parameters inputted
-    from the user. Returns as tuple for easier testing."""
+    """
+    Constructs the URL for API calls based on user input parameters.
+
+    This function dynamically constructs a URL given the API key, search query,
+    and an optional date parameter. It is designed to facilitate testing by returning
+    the complete URL and the query string separately.
+
+    Args:
+        api_key (str): The API key for authentication.
+        query (str): The search query provided by the user.
+        from_date_param (str): The optional start date for filtering results in 'YYYY-MM-DD' format.
+
+    Returns:
+        tuple: A tuple containing the complete URL for the API call and the query string.
+    """
     from_date_string: str = f"from-date={from_date_param}&"
     main_url: str = "https://content.guardianapis.com/search?"
     url_quieries: str = f"q={query}&api-key={api_key}"
@@ -28,8 +50,20 @@ def form_url(api_key: str, query: str, from_date_param: str = "") -> tuple:
 
 
 def api_call(complete_url: str) -> dict:
-    """function that calls the API using predetermined parameters
-    and returns a json string
+    """
+    Makes an API call to the specified URL and returns the response as a JSON dictionary.
+
+    This function sends a GET request to the given URL and checks if the response status code
+    is 200 (OK). It raises a ValueError if the response code is invalid.
+
+    Args:
+        complete_url (str): The URL to be accessed for the API call.
+
+    Returns:
+        dict: The API response parsed as a JSON dictionary.
+
+    Raises:
+        ValueError: If the response status code is not 200.
     """
     response: Response = requests.get(complete_url, timeout=5)
     if not response.status_code == 200:
@@ -39,8 +73,18 @@ def api_call(complete_url: str) -> dict:
 
 
 def convert_response(response_json_dct: dict) -> list:
-    """function takes in json dict, filters it and returns json
-    string ready for the lambda handler function
+    """
+    Converts a JSON dictionary response from the API into a list of dictionaries.
+
+    This function extracts relevant information from the API response, specifically
+    the article attributes, and formats them into a list of dictionaries suitable
+    for further processing.
+
+    Args:
+        response_json_dct (dict): The JSON dictionary response from the API.
+
+    Returns:
+        list: A list of dictionaries, each containing 'webPublicationDate', 'webTitle', and 'webUrl'.
     """
     list_of_articles: list = response_json_dct["response"]["results"]
     list_of_dct: list = []
