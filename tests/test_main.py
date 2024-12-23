@@ -35,7 +35,7 @@ def test_form_url():
     assert isinstance(start_url, str)
     assert isinstance(end_url, str)
     assert form_url(api_key, query)[1] == "q=£q&api-key=£a"
-    assert end_url == "from_date=£d&q=£q&api-key=£a"
+    assert end_url == "from-date=£d&q=£q&api-key=£a"
 
 
 def test_api_call_successful(mocker):
