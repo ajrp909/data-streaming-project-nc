@@ -34,3 +34,8 @@ resource "aws_iam_role" "lambda_role" {
         ]
     })
 }
+
+resource "aws_iam_role_policy_attachment" "lambda_sqs_policy" {
+    role = aws_iam_role.lambda_role.name
+    policy_arn = "arn:aws:iam::aws:policy/AmazonSQSFullAccess"
+}
