@@ -13,7 +13,7 @@ def invoke_lambda(event: list):
     session = boto3.Session(profile_name=profile_name)
     lambda_client = session.client('lambda')
     function_arn = f"arn:aws:lambda:{region}:{account_id}:function:{lambda_name}"
-    event = json.dumps(event)
-    response = lambda_client.invoke(FunctionName=function_arn, Payload=event)
+    event_payload: str = json.dumps(event)
+    response = lambda_client.invoke(FunctionName=function_arn, Payload=event_payload)
     status_code = response['StatusCode']
     return status_code

@@ -18,8 +18,11 @@ def test_lambda_invocation(mocker):
     mocker.patch.dict(os.environ, {'FUNC_NAME': 'test_func'})
     mocker.patch.dict(os.environ, {'REGION': 'test_region'})
     mocker.patch.dict(os.environ, {'ACCOUNT_ID': 'test_id'})
+    mocker.patch.dict(os.environ, {'AWS_PROFILE': 'test_profile'})
+    mock_session = mocker.Mock()
+    mocker.patch('boto3.Session', return_value = mock_session)
     mock_lambda_client = mocker.Mock()
-    mocker.patch('aws.aws_utils.boto3.client', return_value=mock_lambda_client)
+    mock_session.client.return_value = mock_lambda_client
     mock_lambda_client.invoke.return_value = {
         'StatusCode': 200
     }
@@ -28,5 +31,6 @@ def test_lambda_invocation(mocker):
     assert status_code == 200
     mock_lambda_client.invoke.assert_called_once_with(
         FunctionName='arn:aws:lambda:test_region:test_id:function:test_func',
-        Payload=mock_event
+        Payload='[{"webPublicationDate": "test1", '
+        '"webTitle": "test2", "webUrl": "test3"}]'
     )
