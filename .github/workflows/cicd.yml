@@ -24,21 +24,7 @@ jobs:
         source venv/bin/activate
         make upgrade
         pip install -r requirements.txt 
-
-    - name: run tests
-      run: make test
-
-    - name: run reformat
-      run: make reformat
-
-    - name: run lint
-      run: make lint
-
-    - name: run mypy
-      run: make mypy
-
-    - name: run security
-      run: make security
     
     - name: run checks
-      run: make checks
+      run: |
+        make checks
