@@ -18,7 +18,7 @@ def get_api_key() -> str:
 def form_url(api_key: str, query: str, from_date_param: str = "") -> tuple:
     """Forms the url dynamically based on query parameters inputted
     from the user. Returns as tuple for easier testing."""
-    from_date_string: str = f"from_date={from_date_param}&"
+    from_date_string: str = f"from-date={from_date_param}&"
     main_url: str = "https://content.guardianapis.com/search?"
     url_quieries: str = f"q={query}&api-key={api_key}"
     if from_date_param:
