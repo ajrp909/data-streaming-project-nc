@@ -35,3 +35,6 @@ apply:
 
 destroy:
 	terraform destroy -auto-approve
+
+main:
+	python src/main.py
