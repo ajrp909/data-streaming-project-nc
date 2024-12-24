@@ -31,6 +31,7 @@ def invoke_lambda(event: list) -> int:
     Raises:
         KeyError: If any of the required environment variables are not set.
         boto3.exceptions.Boto3Error: If there is an error invoking the Lambda function.
+    # noqa: E501
     """
     lambda_name = os.environ["FUNC_NAME"]
     region = os.environ["REGION"]

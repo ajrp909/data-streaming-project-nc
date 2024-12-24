@@ -9,6 +9,7 @@ def test_get_api_key_successful(mocker):
     This test mocks the `os.getenv` function to simulate a successful scenario
     where a valid API key is retrieved from the environment variables. It asserts
     that the returned API key matches the mocked value and is of the correct type.
+    # noqa: E501
     """
     mocker.patch("os.getenv", return_value="mocked_key")
     result = get_api_key()
@@ -24,6 +25,7 @@ def test_get_api_key_failed(mocker):
     This test mocks the `os.getenv` function to simulate a failure scenario
     where the API key is not found (None). It asserts that a ValueError is
     raised with a specific error message indicating a missing API key.
+    # noqa: E501
     """
     mocker.patch("os.getenv", return_value=None)
     with pytest.raises(ValueError) as exec_info:
@@ -40,6 +42,7 @@ def test_form_url():
     Tests both the presence of a date parameter and its absence. It verifies that
     both parts of the URL (start and end) are correctly formatted strings and
     checks that the resulting URLs match expected values.
+    # noqa: E501
     """
     api_key = "£a"
     query = "£q"
@@ -59,6 +62,7 @@ def test_api_call_successful(mocker):
     Mocks the `requests.get` function to simulate a successful API call with
     a status code of 200 and a JSON response. Asserts that the API call
     returns the expected dictionary.
+    # noqa: E501
     """
     mock_response = mocker.Mock()
     mock_response.json.return_value = {"hello": "world"}
@@ -76,6 +80,7 @@ def test_api_call_unsuccessful(mocker):
     Mocks the `requests.get` function to simulate an unsuccessful API call with
     a non-200 status code. Asserts that a ValueError is raised with a specific
     error message indicating an invalid response code.
+    # noqa: E501
     """
     mock_response = mocker.Mock()
     mock_response.json.return_value = {"hello": "world"}
@@ -94,6 +99,7 @@ def test_convert_response():
     Uses a fake JSON response to simulate the conversion process. Asserts
     that the conversion function returns a list of dictionaries with the
     expected structure and data.
+    # noqa: E501
     """
     fake_response_dct = {
         "response": {

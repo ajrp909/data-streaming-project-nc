@@ -3,19 +3,19 @@ upgrade:
 
 test:
 	venv/bin/pytest tests/ -vrP --testdox 
-	venv/bin/pytest --cov=src.utils --cov-report=term --cov-fail-under=100
+	venv/bin/pytest --cov=src.utils --cov=aws --cov-report=term --cov-fail-under=100
 
 reformat:
-	venv/bin/black src/ tests/ --line-length 79 
+	venv/bin/black src/ tests/ aws/ --line-length 79 
 
 lint:
-	venv/bin/flake8 src/ tests/ -v
+	venv/bin/flake8 src/ tests/ aws/ -v
 
 mypy:
-	venv/bin/mypy src/ tests/ --check-untyped-defs
+	venv/bin/mypy src/ tests/ aws/ --check-untyped-defs
 
 security:
-	venv/bin/bandit -r src/
+	venv/bin/bandit -r src/ aws/
 
 checks:
 	make test

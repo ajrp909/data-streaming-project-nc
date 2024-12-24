@@ -16,6 +16,7 @@ def get_api_key() -> str:
 
     Raises:
         ValueError: If the API key is None or not found in the environment variables.
+    # noqa: E501
     """
     load_dotenv()
     api_key: str | None = os.getenv("API_KEY")
@@ -39,6 +40,7 @@ def form_url(api_key: str, query: str, from_date_param: str = "") -> tuple:
 
     Returns:
         tuple: A tuple containing the complete URL for the API call and the query string.
+    # noqa: E501
     """
     from_date_string: str = f"from-date={from_date_param}&"
     main_url: str = "https://content.guardianapis.com/search?"
@@ -64,6 +66,7 @@ def api_call(complete_url: str) -> dict:
 
     Raises:
         ValueError: If the response status code is not 200.
+    # noqa: E501
     """
     response: Response = requests.get(complete_url, timeout=5)
     if not response.status_code == 200:
@@ -85,6 +88,7 @@ def convert_response(response_json_dct: dict) -> list:
 
     Returns:
         list: A list of dictionaries, each containing 'webPublicationDate', 'webTitle', and 'webUrl'.
+    # noqa: E501
     """
     list_of_articles: list = response_json_dct["response"]["results"]
     list_of_dct: list = []

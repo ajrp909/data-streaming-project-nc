@@ -11,6 +11,7 @@ def test_lambda_handler(mocker):
     a message to the SQS queue using the mocked AWS Boto3 client. It mocks the
     environment variable for the SQS URL and ensures that the `send_message`
     method is called with the correct parameters.
+    # noqa: E501
     """
     mocker.patch.dict(os.environ, {"SQS_URL": "testurl.com"})
     mock_sqs = mocker.Mock()
@@ -33,6 +34,7 @@ def test_lambda_invocation(mocker):
     the AWS Lambda service using the mocked Boto3 session and client. It
     simulates environment variables necessary for forming the function ARN
     and checks if the invocation is performed correctly with a 200 status code.
+    # noqa: E501
     """
     mocker.patch.dict(os.environ, {"FUNC_NAME": "test_func"})
     mocker.patch.dict(os.environ, {"REGION": "test_region"})

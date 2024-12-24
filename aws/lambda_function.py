@@ -23,6 +23,7 @@ def lambda_handler(event, context):
     Raises:
         KeyError: If the SQS_URL environment variable is not set.
         boto3.exceptions.Boto3Error: If there is an error sending messages to SQS.
+    # noqa: E501
     """
     sqs_client = boto3.client('sqs')
     sqs_url = os.environ['SQS_URL']

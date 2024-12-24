@@ -16,6 +16,7 @@ def main():
     - Sends the processed data to an AWS Lambda function and handles the response.
 
     This function is intended to be run as a script and outputs the result of the Lambda invocation.
+    # noqa: E501
     """
     obtained_api_key: str = get_api_key()
     query_input: str = input("What would you like to search?: ")
