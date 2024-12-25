@@ -48,12 +48,6 @@ rsa==4.7.2
 s3transfer==0.10.4
 six==1.17.0
 snowballstemmer==2.2.0
-sphinxcontrib-applehelp==2.0.0
-sphinxcontrib-devhelp==2.0.0
-sphinxcontrib-htmlhelp==2.1.0
-sphinxcontrib-jsmath==1.0.1
-sphinxcontrib-qthelp==2.0.0
-sphinxcontrib-serializinghtml==2.0.0
 stevedore==5.4.0
 types-awscrt==0.23.6
 types-requests==2.32.0.20241016
