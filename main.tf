@@ -11,11 +11,11 @@ terraform {
 
 provider "aws" {
     profile = var.aws_profile
-  region = var.aws_region
+    region = var.aws_region
 }
 
 resource "aws_sqs_queue" "terraform_queue" {
-  name                      = "Nc-Sqs-Queue"
+  name                      = var.sqs_queue_name
   message_retention_seconds = 259200
 }
 
@@ -24,7 +24,7 @@ output "queue_url" {
 }
 
 resource "aws_iam_role" "lambda_role" {
-    name = "Nc-Sqs-Role"
+    name = var.iam_role_name
     assume_role_policy = jsonencode({
         Version = "2012-10-17"
         Statement = [
@@ -52,7 +52,7 @@ data "archive_file" "zip_python_code" {
 
 resource "aws_lambda_function" "terraform_lambda_func" {
     filename = "${path.module}/aws/lambda_function.zip"
-    function_name = "Nc-Lambda"
+    function_name = var.func_name
     role = aws_iam_role.lambda_role.arn
     handler = "lambda_function.lambda_handler"
     runtime = "python3.9"
