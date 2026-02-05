@@ -88,7 +88,7 @@ Follow the instructions in the terminal:
 
         enter access key just obtained
         enter secret access key just obtained
-        enter your default region - "us-east-1"
+        enter your default region exactly how it appears in the aws console, for example - us-east-1
         ignore default output format - Just press enter to ignore this step
 
 The CLI is now configured.
